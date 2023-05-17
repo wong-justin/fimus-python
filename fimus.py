@@ -314,16 +314,16 @@ def similarity(DG, _domain, C):
         Ci = C[prev_indices + i]
         Cj = C[prev_indices + j]
 
-        # similarity calculation following https://crpit.scem.westernsydney.edu.au/confpapers/CRPITV134Giggins.pdf,
+        # similarity calculation following https://crpit.scem.westernsydney.edu.au/confpapers/CRPITV134Giggins.pdf bottom-right of page 141,
         # but results not quite same as in FIMUS paper.
         numerator = sum(( (Ci[k] * Cj[k]) ** 0.5
                          for k in range(len(C))))
         denominator = ( degree(Ci) * degree(Cj) ) ** 0.5
         s_prime = numerator / denominator
 
-        # new method following https://crpit.scem.westernsydney.edu.au/confpapers/CRPITV134Giggins.pdf
-        # worse results tho
 
+        # alternative similarity calculation following https://github.com/ipranavpatel/ExtendedFIMUS/blob/master/Explanation%20with%20an%20example.pdf on page 3,
+        # but worse results than above
         # numerator = 1
         # denominator = 1 + ( math.log( len(DG) / degree(Ci), 10 ) *
         #                     math.log( len(DG) / degree(Cj), 10 ) )
